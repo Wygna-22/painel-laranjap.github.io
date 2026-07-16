@@ -1,5 +1,6 @@
 from sqlalchemy.orm import Session
 from models.user import User
+from uuid import UUID
 
 class UserRepository:
 
@@ -13,7 +14,7 @@ class UserRepository:
             .first()
         )
 
-    def get_by_id(self, user_id):
+    def get_by_id(self, user_id: UUID) -> User | None:
         return (
             self.db.query(User)
             .filter(User.id == user_id)
@@ -31,6 +32,13 @@ class UserRepository:
         self.db.refresh(user)
         return user
 
-    def delete(self, user: User):
+    def delete(self, user: User) -> None:
         self.db.delete(user)
         self.db.commit()
+
+    def get_all(self) -> list[User]:
+        return (
+            self.db.query(User)
+            .order_by(User.created_at.desc())
+            .all()
+        )

@@ -3,9 +3,11 @@ from sqlalchemy import text
 
 from database.session import SessionLocal
 from routes.auth_routes import router as auth_router
+from routes.users_routes import router as users_router
 
 app = FastAPI()
 app.include_router(auth_router)
+app.include_router(users_router)
 
 @app.get("/")
 def home():
