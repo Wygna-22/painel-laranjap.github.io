@@ -1,13 +1,13 @@
 from fastapi import FastAPI
+from app.routers.users import router as user_router
 
 app = FastAPI(
     title="Painel Laranja API",
     version="1.0.0",
-    description="API do sistema Painel Laranja",
 )
+
+app.include_router(user_router)
 
 @app.get("/")
 def root():
-    return {
-        "mensagem": "🍊 Painel Laranja API está funcionando!"
-    }
+    return {"message": "🍊 Painel Laranja API"}
