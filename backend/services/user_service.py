@@ -5,6 +5,7 @@ from auth.password import hash_password
 from auth.jwt_handler import create_access_token
 from auth.password import verify_password
 from fastapi import HTTPException, status
+from uuid import UUID
 
 class UserService:
 
@@ -63,3 +64,14 @@ class UserService:
     
     def get_all_users(self):
         return self.repository.get_all()
+    
+    def get_user_by_id(self, user_id: UUID) -> User:
+        user = self.repository.get_by_id(user_id)
+
+        if not user:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="Usuário não encontrado."
+            )
+
+        return user
