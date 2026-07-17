@@ -1,0 +1,23 @@
+# Ambiente virtual
+.venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Variáveis de ambiente
+.env
+
+# Alembic
+alembic/versions/__pycache__/
+
+# VS Code
+.vscode/
+
+# Pytest
+.pytest_cache/
+
+# Sistema
+.DS_Store
+Thumbs.db
