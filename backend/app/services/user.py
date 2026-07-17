@@ -1,10 +1,11 @@
-from passlib.context import CryptContext
 from sqlalchemy.orm import Session
 from app.models.user import User
 from app.repositories.user import user_repository
 from app.schemas.user import UserCreate
-
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+from app.core.security import (
+    hash_password,
+    verify_password,
+)
 
 class UserService:
     def create_user(self, db: Session, user: UserCreate) -> User:
@@ -15,7 +16,7 @@ class UserService:
             raise ValueError("Já existe um usuário com este e-mail.")
 
         # Criptografa a senha
-        senha_hash = pwd_context.hash(user.senha)
+        senha_hash = hash_password(user.senha)
 
         # Cria o objeto
         novo_usuario = User(
@@ -33,7 +34,10 @@ class UserService:
         if not usuario:
             return None
 
-        if not pwd_context.verify(senha, usuario.senha_hash):
+        if not verify_password(
+            senha,
+            usuario.senha_hash,
+        ):
             return None
 
         return usuario
