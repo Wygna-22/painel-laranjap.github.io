@@ -4,6 +4,8 @@ from app.routers.users import router as user_router
 from app.routers.auth import router as auth_router
 from app.dependencies.auth import get_current_user
 from app.models.user import User
+from app.dependencies.auth import require_role
+from app.models.enums import UserRole
 
 app = FastAPI(
     title="Painel Laranja API",
@@ -26,4 +28,16 @@ def me(
         "nome": current_user.nome,
         "email": current_user.email,
         "perfil": current_user.perfil,
+    }
+
+@app.get("/admin")
+def admin_area(
+    current_user=Depends(
+        require_role(UserRole.ADMIN)
+    ),
+):
+    return {
+        "usuario": current_user.nome,
+        "perfil": current_user.perfil,
+        "mensagem": "Área exclusiva do administrador."
     }
