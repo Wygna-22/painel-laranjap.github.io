@@ -1,5 +1,4 @@
 from sqlalchemy.orm import Session
-
 from app.repositories.dashboard_repository import (
     dashboard_repository,
 )
