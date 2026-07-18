@@ -2,7 +2,8 @@ from fastapi import FastAPI
 from fastapi import Depends
 from app.routers.users import router as user_router
 from app.routers.auth import router as auth_router
-from app.dependencies.auth import get_current_token
+from app.dependencies.auth import get_current_user
+from app.models.user import User
 
 app = FastAPI(
     title="Painel Laranja API",
@@ -18,8 +19,11 @@ def root():
 
 @app.get("/me")
 def me(
-    token: str = Depends(get_current_token),
+    current_user: User = Depends(get_current_user),
 ):
     return {
-        "token": token
+        "id": str(current_user.id),
+        "nome": current_user.nome,
+        "email": current_user.email,
+        "perfil": current_user.perfil,
     }
