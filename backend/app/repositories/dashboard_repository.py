@@ -2,7 +2,7 @@ from datetime import date
 from sqlalchemy import func
 from sqlalchemy.orm import Session
 from app.models.colaborador import Colaborador
-from app.models.enums import StatusColaborador
+from app.models.status_colaborador import StatusColaborador
 
 class DashboardRepository:
 
