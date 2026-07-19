@@ -1,6 +1,6 @@
-from app.reports.base_excel import BaseExcelReport
+from app.reports.base_pdf import BasePdfReport
 
-class ColaboradorExcel(BaseExcelReport):
+class ColaboradorPdf(BasePdfReport):
 
     def __init__(self, colaboradores):
         self.colaboradores = colaboradores
@@ -9,7 +9,6 @@ class ColaboradorExcel(BaseExcelReport):
         return "Relatório de Colaboradores"
 
     def get_headers(self):
-
         return [
             "Nome",
             "Email",
@@ -19,6 +18,7 @@ class ColaboradorExcel(BaseExcelReport):
         ]
 
     def get_rows(self):
+
         return [
             [
                 c.nome,
@@ -31,13 +31,8 @@ class ColaboradorExcel(BaseExcelReport):
         ]
 
     def get_footer(self):
+
         return (
             f"Total de colaboradores: "
             f"{len(self.colaboradores)}"
         )
-    
-    def get_statistics(self):
-        total = len(self.colaboradores)
-        return [
-            ("Total de colaboradores", str(total)),
-        ]

@@ -22,6 +22,7 @@ class BaseExcelReport(ABC):
         worksheet.title = self.get_title()
 
         self._write_title(worksheet)
+        self._write_statistics(worksheet)
         self._write_headers(worksheet)
         self._write_rows(worksheet)
         self._format_columns(worksheet)
@@ -49,33 +50,75 @@ class BaseExcelReport(ABC):
     def get_footer(self):
         ...
 
+    def get_statistics(self) -> list[tuple[str, str]]:
+        return []
+
     def _write_title(self, ws):
 
-        ws["A1"] = self.get_title()
+        total_columns = len(self.get_headers())
 
-        ws["A1"].font = Font(
+        ws.merge_cells(
+            start_row=1,
+            start_column=1,
+            end_row=1,
+            end_column=total_columns,
+        )
+
+        title = ws["A1"]
+
+        title.value = self.get_title()
+
+        title.font = Font(
             bold=True,
-            size=16,
+            size=18,
             color="FFFFFF",
         )
 
-        ws["A1"].fill = PatternFill(
+        title.fill = PatternFill(
             fill_type="solid",
             fgColor="F97316",
         )
+
+        title.alignment = Alignment(
+            horizontal="center",
+            vertical="center",
+        )
+
+        ws.row_dimensions[1].height = 30
 
         ws["A2"] = (
             f"Gerado em: "
             f"{datetime.now():%d/%m/%Y %H:%M}"
         )
 
-        ws["A2"].font = Font(italic=True)
+        ws["A2"].font = Font(
+            italic=True,
+            color="666666",
+        )
+
+    def _write_statistics(self, ws):
+
+        statistics = self.get_statistics()
+
+        if not statistics:
+            return
+
+        row = 3
+
+        for label, value in statistics:
+
+            ws.cell(row=row, column=1).value = label
+            ws.cell(row=row, column=1).font = Font(bold=True)
+
+            ws.cell(row=row, column=2).value = value
+
+            row += 1
 
     def _write_headers(self, ws):
 
         headers = self.get_headers()
 
-        row = 4
+        row = 8
 
         fill = PatternFill(
             fill_type="solid",
@@ -119,12 +162,13 @@ class BaseExcelReport(ABC):
 
         rows = self.get_rows()
 
-        start = 5
+        start = 9
 
         for index, row_data in enumerate(rows):
 
             row_number = start + index
-
+            ws.row_dimensions[row_number].height = 22
+            
             for column, value in enumerate(row_data, start=1):
 
                 cell = ws.cell(
@@ -134,14 +178,17 @@ class BaseExcelReport(ABC):
 
                 cell.value = value
                 cell.border = border
+                cell.alignment = Alignment(
+                    vertical="center",
+                )
 
                 if index % 2 == 0:
                     cell.fill = fill
 
-        ws.freeze_panes = "A5"
+        ws.freeze_panes = "A9"
 
         ws.auto_filter.ref = (
-            f"A4:{get_column_letter(len(self.get_headers()))}"
+            f"A8:{get_column_letter(len(self.get_headers()))}"
             f"{start + len(rows) - 1}"
         )
 
@@ -164,13 +211,48 @@ class BaseExcelReport(ABC):
                         len(str(cell.value))
                     )
 
-            ws.column_dimensions[letter].width = length + 3
+            ws.column_dimensions[letter].width = max(
+                length + 3,
+                18,
+            )
 
     def _write_footer(self, ws):
 
         row = ws.max_row + 2
 
+        cell = ws.cell(
+            row=row,
+            column=1,
+        )
+
+        cell.value = self.get_footer()
+
+        cell.font = Font(
+            bold=True,
+            color="FFFFFF",
+        )
+
+        cell.fill = PatternFill(
+            fill_type="solid",
+            fgColor="F97316",
+        )
+
+        cell.alignment = Alignment(
+            horizontal="center",
+        )
+
+        total_columns = len(self.get_headers())
+
+        ws.merge_cells(
+            start_row=row,
+            start_column=1,
+            end_row=row,
+            end_column=total_columns,
+        )
         ws.cell(
             row=row,
             column=1,
-        ).value = self.get_footer()
+        ).alignment = Alignment(
+            horizontal="center",
+            vertical="center",
+        )

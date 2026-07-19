@@ -25,3 +25,22 @@ async def gerar_excel(
             "Content-Disposition": 'attachment; filename="colaboradores.xlsx"'
         },
     )
+
+@router.get("/colaboradores/pdf")
+async def gerar_pdf(
+    db: Session = Depends(get_db),
+):
+
+    arquivo = (
+        await relatorio_service
+        .gerar_pdf_colaboradores(db)
+    )
+
+    return StreamingResponse(
+        arquivo,
+        media_type="application/pdf",
+        headers={
+            "Content-Disposition":
+                'attachment; filename="colaboradores.pdf"'
+        },
+    )

@@ -1,5 +1,6 @@
 from sqlalchemy.orm import Session
 from app.reports.colaborador_excel import ColaboradorExcel
+from app.reports.colaborador_pdf import ColaboradorPdf
 from app.repositories.relatorio_repository import (
     relatorio_repository,
 )
@@ -17,6 +18,19 @@ class RelatorioService:
         colaboradores = self.repository.listar_colaboradores(db)
 
         report = ColaboradorExcel(colaboradores)
+
+        return report.generate()
+    
+    async def gerar_pdf_colaboradores(
+        self,
+        db: Session,
+    ):
+
+        colaboradores = (
+            self.repository.listar_colaboradores(db)
+        )
+
+        report = ColaboradorPdf(colaboradores)
 
         return report.generate()
 
