@@ -1,39 +1,24 @@
 import Button from "./components/ui/Button";
+import PageHeader from "./components/ui/PageHeader";
 
 function App() {
   return (
     <main
       style={{
         minHeight: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
+        padding: "48px",
         background: "#FFF8F3",
       }}
     >
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "16px",
-        }}
-      >
-        <Button>
-          Botão Primário
-        </Button>
-
-        <Button variant="secondary">
-          Botão Secundário
-        </Button>
-
-        <Button variant="danger">
-          Botão Perigo
-        </Button>
-
-        <Button loading>
-          Salvar
-        </Button>
-      </div>
+      <PageHeader
+        title="Dashboard Executivo"
+        description="Visão geral da operação e desempenho das equipes."
+        actions={
+          <Button>
+            Novo colaborador
+          </Button>
+        }
+      />
     </main>
   );
 }
