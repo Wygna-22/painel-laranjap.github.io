@@ -1,14 +1,19 @@
+import { Outlet } from "react-router-dom";
+import Sidebar from "../../components/Sidebar/Sidebar";
+import Header from "../../components/Header/Header";
+
 import "./MainLayout.css";
 
 export default function MainLayout() {
-  return (
-    <div className="layout">
-      <div className="layout__content">
-        <main className="layout__page">
-          <h1>Dashboard Executivo</h1>
-          <p>Se você está vendo isso, o MainLayout está funcionando.</p>
-        </main>
-      </div>
-    </div>
-  );
+    return (
+        <div className="layout">
+            <Sidebar />
+            <div className="layout-content">
+                <Header />
+                <main className="page-content">
+                    <Outlet />
+                </main>
+            </div>
+        </div>
+    );
 }
