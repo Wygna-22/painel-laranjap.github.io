@@ -2,7 +2,7 @@ import DashboardLayout from "../../components/DashboardLayout/DashboardLayout";
 import DashboardGrid from "../../components/DashboardGrid/DashboardGrid";
 import ChartsGrid from "../../components/ChartsGrid/ChartsGrid";
 import ChartCard from "../../components/ChartCard/ChartCard";
-
+import { useDashboard } from "../../hooks/useDashboard";
 import CollaboratorsChart from "../../components/Charts/CollaboratorsChart";
 import StatusChart from "../../components/Charts/StatusChart";
 

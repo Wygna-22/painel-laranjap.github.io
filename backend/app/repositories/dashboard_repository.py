@@ -206,7 +206,13 @@ class DashboardRepository:
         self,
         db: Session,
     ):
-        ...
+        return (
+            db.query(Historico)
+            .filter(
+                Historico.tipo == TipoHistorico.ADVERTENCIA,
+            )
+            .count()
+        )
 
     def get_ultimos_historicos(
         self,
