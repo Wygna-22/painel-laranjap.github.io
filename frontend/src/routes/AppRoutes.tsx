@@ -4,6 +4,7 @@ import MainLayout from "../layouts/MainLayout";
 
 import Dashboard from "../pages/Dashboard/Dashboard";
 import Colaboradores from "../pages/Colaboradores/Colaboradores";
+import Gestores from "../pages/Gestores/Gestores";
 import Ferias from "../pages/Ferias/Ferias";
 import Folgas from "../pages/Folgas/Folgas";
 import Relatorios from "../pages/Relatorios/Relatorios";
@@ -14,7 +15,6 @@ import ProtectedRoute from "../components/ProtectedRoute";
 export default function AppRoutes() {
     return (
         <BrowserRouter basename="/painel-laranja.github.io">
-
             <Routes>
 
                 <Route
@@ -46,6 +46,11 @@ export default function AppRoutes() {
                     />
 
                     <Route
+                        path="/gestores"
+                        element={<Gestores />}
+                    />
+
+                    <Route
                         path="/ferias"
                         element={<Ferias />}
                     />
@@ -63,7 +68,6 @@ export default function AppRoutes() {
                 </Route>
 
             </Routes>
-
         </BrowserRouter>
     );
 }

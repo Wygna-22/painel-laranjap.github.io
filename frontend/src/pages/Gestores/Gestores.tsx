@@ -1,183 +1,72 @@
-import "./Colaboradores.css";
-import { useState } from "react";
-import { Search, Plus, Pencil, Trash2 } from "lucide-react";
+import "./Gestores.css";
 
-import { useGestores } from "../../hooks/useGestores";
+import { useEffect, useState } from "react";
+
+import GestorCard from "../../components/GestorCard/GestorCard";
+
+import { listarGestores } from "../../services/gestorService";
+
 import type { Gestor } from "../../types/gestor";
-import GestorModal from "../../components/GestorModal/GestorModal";
 
 export default function Gestores() {
 
-    const {
-        gestores,
-        loading,
-        error,
-        create,
-        update,
-        remove,
-    } = useGestores();
+    const [gestores, setGestores] = useState<Gestor[]>([]);
+    const [loading, setLoading] = useState(true);
 
-    const [pesquisa, setPesquisa] = useState("");
+    useEffect(() => {
 
-    const [modalOpen, setModalOpen] = useState(false);
-    const [selected, setSelected] = useState<Gestor | null>(null);
+        async function carregar() {
 
-    const gestoresFiltrados = gestores.filter((gestor) =>
-        gestor.nome.toLowerCase().includes(pesquisa.toLowerCase()) ||
-        gestor.email.toLowerCase().includes(pesquisa.toLowerCase()) ||
-        gestor.setor.toLowerCase().includes(pesquisa.toLowerCase()) ||
-        gestor.cidade.toLowerCase().includes(pesquisa.toLowerCase())
-    );
+            try {
+
+                const dados = await listarGestores();
+
+                setGestores(dados);
+
+            } catch (erro) {
+
+                console.error("Erro ao carregar gestores:", erro);
+
+            } finally {
+
+                setLoading(false);
+
+            }
+
+        }
+
+        carregar();
+
+    }, []);
 
     if (loading) {
-        return <h2>Carregando gestores...</h2>;
-    }
-
-    if (error) {
-        return <h2>{error}</h2>;
+        return <p>Carregando gestores...</p>;
     }
 
     return (
 
-        <div className="colaboradores-page">
+        <div className="gestores-page">
 
-            <div className="page-header">
+            <div className="page-title">
 
                 <h1>Gestores</h1>
 
-                <button
-                    className="novo-btn"
-                    onClick={() => {
-                        setSelected(null);
-                        setModalOpen(true);
-                    }}
-                >
-                    <Plus size={18} />
-                    Novo Gestor
-                </button>
+                <p>Gestão de usuários com perfil Gestor</p>
 
             </div>
 
-            <div className="pesquisa">
+            <div className="gestores-grid">
 
-                <Search size={18} />
+                {gestores.map((gestor) => (
 
-                <input
-                    placeholder="Pesquisar..."
-                    value={pesquisa}
-                    onChange={(e) => setPesquisa(e.target.value)}
-                />
+                    <GestorCard
+                        key={gestor.id}
+                        gestor={gestor}
+                    />
+
+                ))}
 
             </div>
-
-            <table className="tabela">
-
-                <thead>
-
-                    <tr>
-
-                        <th>Nome</th>
-
-                        <th>Email</th>
-
-                        <th>Matrícula</th>
-
-                        <th>Cargo</th>
-
-                        <th>Setor</th>
-
-                        <th>Cidade</th>
-
-                        <th>Status</th>
-
-                        <th>Ações</th>
-
-                    </tr>
-
-                </thead>
-
-                <tbody>
-
-                    {gestoresFiltrados.map((gestor) => (
-
-                        <tr key={gestor.id}>
-
-                            <td>{gestor.nome}</td>
-
-                            <td>{gestor.email}</td>
-
-                            <td>{gestor.matricula}</td>
-
-                            <td>{gestor.cargo}</td>
-
-                            <td>{gestor.setor}</td>
-
-                            <td>{gestor.cidade}</td>
-
-                            <td>{gestor.status}</td>
-
-                            <td>
-
-                                <button
-                                    className="icon-btn"
-                                    onClick={() => {
-                                        setSelected(gestor);
-                                        setModalOpen(true);
-                                    }}
-                                >
-                                    <Pencil size={18} />
-                                </button>
-
-                                <button
-                                    className="icon-btn delete"
-                                    onClick={async () => {
-
-                                        if (
-                                            window.confirm(
-                                                `Excluir ${gestor.nome}?`
-                                            )
-                                        ) {
-
-                                            await remove(gestor.id);
-
-                                        }
-
-                                    }}
-                                >
-                                    <Trash2 size={18} />
-                                </button>
-
-                            </td>
-
-                        </tr>
-
-                    ))}
-
-                </tbody>
-
-            </table>
-
-            <GestorModal
-                open={modalOpen}
-                gestor={selected}
-                onClose={() => setModalOpen(false)}
-                onSave={async (data) => {
-
-                    if (selected) {
-
-                        await update(
-                            selected.id,
-                            data
-                        );
-
-                    } else {
-
-                        await create(data);
-
-                    }
-
-                }}
-            />
 
         </div>
 

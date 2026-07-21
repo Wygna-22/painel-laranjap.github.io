@@ -1,0 +1,169 @@
+.gestor-card{
+
+    background:#FFF;
+
+    border:1px solid #E2E8F0;
+
+    border-radius:22px;
+
+    padding:22px;
+
+    transition:.25s;
+
+}
+
+.gestor-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 20px 40px rgba(15,23,42,.08);
+
+}
+
+.gestor-header{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:16px;
+
+}
+
+.gestor-avatar{
+
+    width:48px;
+
+    height:48px;
+
+    background:#FF7A00;
+
+    color:white;
+
+    border-radius:14px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-weight:700;
+
+}
+
+.gestor-header h3{
+
+    margin:0;
+
+    color:#0F172A;
+
+}
+
+.gestor-header p{
+
+    margin-top:4px;
+
+    color:#64748B;
+
+}
+
+.gestor-card hr{
+
+    border:none;
+
+    border-top:1px solid #E2E8F0;
+
+    margin:20px 0;
+
+}
+
+.gestor-stats{
+
+    display:flex;
+
+    gap:36px;
+
+}
+
+.ativo{
+
+    color:#22C55E;
+
+}
+
+.inativo{
+
+    color:#64748B;
+
+}
+
+.gestor-badge{
+
+    margin-top:22px;
+
+    display:inline-flex;
+
+    padding:6px 14px;
+
+    border-radius:999px;
+
+    background:#FFF7ED;
+
+    color:#EA580C;
+
+    font-weight:600;
+
+    font-size:14px;
+
+}
+
+.gestor-email{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    margin:18px 0;
+
+    color:#64748B;
+
+    font-size:14px;
+
+}
+
+.gestor-status{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:8px 14px;
+
+    border-radius:999px;
+
+    font-weight:600;
+
+    font-size:14px;
+
+}
+
+.gestor-status.ativo{
+
+    background:#DCFCE7;
+
+    color:#15803D;
+
+}
+
+.gestor-status.inativo{
+
+    background:#FEE2E2;
+
+    color:#B91C1C;
+
+}
