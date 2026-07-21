@@ -68,28 +68,28 @@ export default function Dashboard() {
                         title="Colaboradores"
                         value={dashboard?.total_colaboradores ?? 0}
                         color="#3B82F6"
-                        icon={<Users size={28} />}
+                        icon={Users}
                     />
 
                     <KpiCard
                         title="Em férias"
                         value={dashboard?.ferias_hoje ?? 0}
                         color="#22C55E"
-                        icon={<CalendarDays size={28} />}
+                        icon={CalendarDays}
                     />
 
                     <KpiCard
                         title="Folgas hoje"
                         value={dashboard?.folgas_hoje ?? 0}
                         color="#F97316"
-                        icon={<CalendarCheck size={28} />}
+                        icon={CalendarCheck}
                     />
 
                     <KpiCard
                         title="Ativos"
                         value={dashboard?.ativos ?? 0}
                         color="#A855F7"
-                        icon={<UserCog size={28} />}
+                        icon={UserCog}
                     />
 
                 </DashboardGrid>

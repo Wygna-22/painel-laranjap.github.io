@@ -1,0 +1,50 @@
+.indicadores-page {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.indicadores-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.indicadores-header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #222;
+}
+
+.indicadores-header p {
+    color: #777;
+    margin-top: 4px;
+}
+
+.novo-btn {
+    background: #ff6b00;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 18px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: .2s;
+}
+
+.novo-btn:hover {
+    transform: translateY(-2px);
+    opacity: .9;
+}
+
+.kpi-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.supervisores-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(360px,1fr));
+    gap:20px;
+}

@@ -18,7 +18,9 @@ export default function KpiCard({
 }: Props) {
 
     return (
+
         <div className="kpi-card">
+
             <div
                 className="kpi-icon"
                 style={{ color }}
@@ -27,7 +29,9 @@ export default function KpiCard({
             </div>
 
             <div className="kpi-content">
+
                 <h2>{value}</h2>
+
                 <span>{title}</span>
                 {subtitle && (
                     <small>{subtitle}</small>
