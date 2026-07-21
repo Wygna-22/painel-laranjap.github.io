@@ -4,6 +4,7 @@ import { Search, Plus, Pencil, Trash2 } from "lucide-react";
 import { useColaboradores } from "../../hooks/useColaboradores";
 import type { Colaborador } from "../../types/colaborador";
 import ColaboradorModal from "../../components/ColaboradorModal/ColaboradorModal";
+import { useNavigate } from "react-router-dom";
 
 export default function Colaboradores() {
 
@@ -20,6 +21,7 @@ export default function Colaboradores() {
 
     const [modalOpen, setModalOpen] = useState(false);
     const [selected, setSelected] = useState<Colaborador | null>(null);
+    const navigate = useNavigate();
 
     const colaboradoresFiltrados = colaboradores.filter((colaborador) =>
         colaborador.nome.toLowerCase().includes(pesquisa.toLowerCase()) ||
@@ -101,7 +103,14 @@ export default function Colaboradores() {
 
                         <tr key={colaborador.id}>
 
-                            <td>{colaborador.nome}</td>
+                            <td>
+                                <button
+                                    className="nome-colaborador"
+                                    onClick={() => navigate(`/colaboradores/${colaborador.id}`)}
+                                >
+                                    {colaborador.nome}
+                                </button>
+                            </td>
 
                             <td>{colaborador.email}</td>
 

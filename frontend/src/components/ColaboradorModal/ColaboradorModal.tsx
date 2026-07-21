@@ -18,7 +18,7 @@ const initialState: Omit<Colaborador, "id"> = {
     setor: "",
     cidade: "",
     data_admissao: "",
-    status: "ATIVO",
+    status: "ativo",
     foto_url: "",
     observacoes: "",
     gestor_id: null,
@@ -139,10 +139,9 @@ export default function ColaboradorModal({
                         value={form.status}
                         onChange={handleChange}
                     >
-                        <option value="ATIVO">Ativo</option>
-                        <option value="FERIAS">Férias</option>
-                        <option value="AFASTADO">Afastado</option>
-                        <option value="DESLIGADO">Desligado</option>
+                        <option value="ativo">Ativo</option>
+                        <option value="afastado">Afastado</option>
+                        <option value="desligado">Desligado</option>
                     </select>
 
                     <textarea

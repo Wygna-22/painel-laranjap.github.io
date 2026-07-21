@@ -4,6 +4,7 @@ import MainLayout from "../layouts/MainLayout";
 
 import Dashboard from "../pages/Dashboard/Dashboard";
 import Colaboradores from "../pages/Colaboradores/Colaboradores";
+import Colaborador from "../pages/Colaborador/Colaborador";
 import Gestores from "../pages/Gestores/Gestores";
 import Ferias from "../pages/Ferias/Ferias";
 import Folgas from "../pages/Folgas/Folgas";
@@ -63,6 +64,11 @@ export default function AppRoutes() {
                     <Route
                         path="/relatorios"
                         element={<Relatorios />}
+                    />
+
+                    <Route
+                        path="/colaboradores/:id"
+                        element={<Colaborador />}
                     />
 
                 </Route>

@@ -6,13 +6,17 @@ export async function getColaboradores(): Promise<Colaborador[]> {
     return response.data;
 }
 
-export async function createColaborador(
-    data: Omit<Colaborador, "id">
-) {
-    const response = await api.post("/colaboradores", data);
-    return response.data;
-}
+export async function createColaborador(data: any) {
+    console.log("ENVIANDO:", data);
 
+    try {
+        const response = await api.post("/colaboradores", data);
+        return response.data;
+    } catch (error: any) {
+        console.log("ERRO BACKEND:", error.response?.data);
+        throw error;
+    }
+}
 export async function updateColaborador(
     id: string,
     data: Partial<Colaborador>
