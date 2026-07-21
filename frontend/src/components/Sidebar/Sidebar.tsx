@@ -5,7 +5,6 @@ import {
     CalendarCheck,
     FileBarChart2,
     UserCog,
-    ClipboardList,
     Activity,
     LogOut,
 } from "lucide-react";
@@ -25,15 +24,15 @@ export default function Sidebar() {
                         style={{
                             width: 52,
                             height: 52,
-                            borderRadius: 14,
+                            borderRadius: 18,
                             background: "#FF7A00",
                             color: "#FFF",
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "center",
                             fontWeight: 700,
-                            fontSize: 26,
-                            boxShadow: "0 10px 22px rgba(255,122,0,.25)",
+                            fontSize: 30,
+                            boxShadow: "0 14px 28px rgba(255,122,0,.28)"
                         }}
                     >
                         P
@@ -119,17 +118,6 @@ export default function Sidebar() {
                     <FileBarChart2 size={20} />
                     <span>Relatórios</span>
                 </NavLink>
-
-                <NavLink
-                    to="/historico"
-                    className={({ isActive }) =>
-                        `sidebar-item ${isActive ? "active" : ""}`
-                    }
-                >
-                    <ClipboardList size={20} />
-                    <span>Histórico</span>
-                </NavLink>
-
             </nav>
 
             <div className="sidebar-footer">
