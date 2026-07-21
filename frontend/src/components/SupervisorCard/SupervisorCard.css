@@ -6,7 +6,7 @@
     transition:.25s;
     display:flex;
     flex-direction:column;
-    gap:20px;
+    gap:18px;
 }
 
 .supervisor-card:hover{
@@ -18,6 +18,35 @@
     display:flex;
     justify-content:space-between;
     align-items:flex-start;
+}
+
+.supervisor-info{
+    display:flex;
+    gap:14px;
+    align-items:center;
+}
+
+.avatar{
+    width:46px;
+    height:46px;
+    border-radius:50%;
+    background:#FFF4EC;
+    color:#ff6b00;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-weight:700;
+    font-size:18px;
+}
+
+.supervisor-info h3{
+    margin:0;
+    font-size:18px;
+}
+
+.supervisor-info span{
+    color:#6b7280;
+    font-size:14px;
 }
 
 .supervisor-header h3{
@@ -33,18 +62,22 @@
 
 .supervisor-actions{
     display:flex;
-    gap:6px;
+    gap:8px;
 }
 
 .supervisor-actions button{
-    background:none;
+    background:#F8F8F8;
     border:none;
     cursor:pointer;
     color:#6B7280;
     transition:.2s;
+    width:34px;
+    height:34px;
+    border-radius:50%;
 }
 
 .supervisor-actions button:hover{
+    background:#FFF2E8;
     color:#ff6b00;
 }
 
@@ -52,32 +85,36 @@
     display:flex;
     flex-direction:column;
     align-items:center;
-    gap:8px;
+    gap:6px;
 }
 
 .gauge-circle{
-    width:120px;
-    height:120px;
+    width:110px;
+    height:110px;
     border-radius:50%;
-    border:8px solid #ff9f1c;
+    border:8px solid #ff9800;
     display:flex;
     justify-content:center;
     align-items:center;
     font-size:28px;
     font-weight:700;
     color:#ff6b00;
+    background:#fff;
 }
 
 .metric-grid{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:1fr 1fr;
     gap:12px;
 }
 
 .metric{
     background:#fafafa;
     border-radius:12px;
-    padding:14px;
+    padding:12px;
+    display:flex;
+    flex-direction:column;
+    gap:4px;
 }
 
 .metric small{
@@ -93,4 +130,25 @@
 
 .danger{
     color:#ef4444 !important;
+}
+
+.gauge-circle strong{
+
+    font-size:30px;
+    color:#ff9800;
+}
+
+.progress{
+    width:100%;
+    height:8px;
+    background:#F1F1F1;
+    border-radius:999px;
+    overflow:hidden;
+}
+
+.progress-fill{
+    height:100%;
+    background:#ff9800;
+    border-radius:999px;
+    transition:.5s;
 }

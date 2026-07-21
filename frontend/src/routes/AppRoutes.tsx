@@ -7,6 +7,7 @@ import Colaboradores from "../pages/Colaboradores/Colaboradores";
 import Colaborador from "../pages/Colaborador/Colaborador";
 import Gestores from "../pages/Gestores/Gestores";
 import Ferias from "../pages/Ferias/Ferias";
+import Indicadores from "../pages/Indicadores/Indicadores";
 import Folgas from "../pages/Folgas/Folgas";
 import Relatorios from "../pages/Relatorios/Relatorios";
 import Login from "../pages/Login/Login";
@@ -69,6 +70,11 @@ export default function AppRoutes() {
                     <Route
                         path="/colaboradores/:id"
                         element={<Colaborador />}
+                    />
+
+                    <Route
+                        path="/indicadores"
+                        element={<Indicadores />}
                     />
 
                 </Route>
