@@ -1,5 +1,8 @@
 .dashboard{
     padding:30px;
+    display:flex;
+    flex-direction:column;
+    gap:24px;
 }
 
 .cards{
@@ -13,9 +16,95 @@
 }
 
 .dashboard-bottom{
-    display:grid;
-    grid-template-columns:2fr 1fr;
+    grid-template-columns:1.8fr 1.2fr;
+    height: 320px;
+    display:flex;
     gap:24px;
-    margin-top:24px;
-    align-items:start;
+    align-items:flex-start;
+}
+
+.dashboard-bottom > :first-child{
+    flex:2;
+}
+
+.dashboard-bottom > :last-child{
+    flex:1;
+}
+
+.event-content{
+    max-height:280px;
+    overflow-y:auto;
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.dashboard-card{
+    animation:fadeUp .6s ease forwards;
+}
+
+.dashboard-card:nth-child(1){
+    animation-delay:.1s;
+}
+
+.dashboard-card:nth-child(2){
+    animation-delay:.2s;
+}
+
+.dashboard-card:nth-child(3){
+    animation-delay:.3s;
+}
+
+.dashboard-card:nth-child(4){
+    animation-delay:.4s;
+}
+
+.dashboard-card{
+    transition:.25s;
+}
+
+.dashboard-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 16px 35px rgba(0,0,0,.08);
+}
+
+.sidebar-item{
+    transition:.25s;
+}
+
+.sidebar-item:hover{
+    transform:translateX(6px);
+}
+
+.sidebar-logo div{
+    transition:.3s;
+}
+
+.sidebar-logo div:hover{
+    transform:rotate(-8deg) scale(1.08);
+}
+
+.dashboard{
+    animation:dashboardAppear .7s ease;
+}
+
+@keyframes dashboardAppear{
+    from{
+        opacity:0;
+        transform:translateY(25px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
 }

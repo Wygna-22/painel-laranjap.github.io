@@ -3,8 +3,6 @@ import DashboardGrid from "../../components/DashboardGrid/DashboardGrid";
 import ChartsGrid from "../../components/ChartsGrid/ChartsGrid";
 import ChartCard from "../../components/ChartCard/ChartCard";
 
-import CollaboratorsChart from "../../components/Charts/CollaboratorsChart";
-import StatusChart from "../../components/Charts/StatusChart";
 import KpiCard from "../../components/KpiCard/KpiCard";
 import CityChart from "../../components/Charts/CityChart";
 import SectorChart from "../../components/Charts/SectorChart";
@@ -12,7 +10,7 @@ import EventCard from "../../components/EventCard/EventCard";
 
 import { useDashboard } from "../../hooks/useDashboard";
 import VacationChart from "../../components/Charts/VacationChart";
-
+import "./Dashboard.css";
 
 import {
     Users,
