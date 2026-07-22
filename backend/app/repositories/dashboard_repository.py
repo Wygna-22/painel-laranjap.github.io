@@ -142,11 +142,23 @@ class DashboardRepository:
         db: Session,
     ):
 
+        dias_semana = {
+            0: "Segunda",
+            1: "Terça",
+            2: "Quarta",
+            3: "Quinta",
+            4: "Sexta",
+            5: "Sábado",
+            6: "Domingo",
+        }
+
+        hoje = dias_semana[date.today().weekday()]
+
         return (
-            db.query(Folga)
+            db.query(Colaborador)
             .filter(
-                Folga.data == date.today(),
-                Folga.status == StatusFolga.APROVADA,
+                Colaborador.dia_folga == hoje,
+                Colaborador.status == StatusColaborador.ATIVO,
             )
             .count()
         )

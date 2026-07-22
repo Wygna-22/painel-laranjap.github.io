@@ -5,6 +5,7 @@
     padding:24px;
     width:100%;
     overflow:hidden;
+    min-height:550px;
 }
 
 .chart-header{

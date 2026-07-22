@@ -82,132 +82,131 @@ export default function Colaboradores() {
                 />
 
             </div>
+            
+            <div className="tabela-container">
+                <table className="tabela">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
 
-            <table className="tabela">
+                            <th>Email</th>
 
-                <thead>
+                            <th>Matrícula</th>
 
-                    <tr>
+                            <th>Cargo</th>
 
-                        <th>Nome</th>
+                            <th>Setor</th>
 
-                        <th>Email</th>
+                            <th>Cidade</th>
 
-                        <th>Matrícula</th>
+                            <th>Status</th>
 
-                        <th>Cargo</th>
+                            <th>Folga</th>
 
-                        <th>Setor</th>
+                            <th>Ações</th>
 
-                        <th>Cidade</th>
+                        </tr>
 
-                        <th>Status</th>
+                    </thead>
 
-                        <th>Folga</th>
+                    <tbody>
 
-                        <th>Ações</th>
+                        {colaboradoresFiltrados.map((colaborador) => {
 
-                    </tr>
+                            const folgaHoje =
+                                (colaborador.dia_folga ?? "").trim() === hoje;
 
-                </thead>
+                            return (
 
-                <tbody>
+                                <tr
+                                    key={colaborador.id}
+                                    className={folgaHoje ? "linha-folga" : ""}
+                                >
 
-                    {colaboradoresFiltrados.map((colaborador) => {
+                                    <td>
 
-                        const folgaHoje =
-                            (colaborador.dia_folga ?? "").trim() === hoje;
-
-                        return (
-
-                            <tr
-                                key={colaborador.id}
-                                className={folgaHoje ? "linha-folga" : ""}
-                            >
-
-                                <td>
-
-                                    <button
-                                        className="nome-colaborador"
-                                        onClick={() =>
-                                            navigate(`/colaboradores/${colaborador.id}`)
-                                        }
-                                    >
-                                        {colaborador.nome}
-                                    </button>
-
-                                </td>
-
-                                <td>{colaborador.email}</td>
-
-                                <td>{colaborador.matricula}</td>
-
-                                <td>{colaborador.cargo}</td>
-
-                                <td>{colaborador.setor}</td>
-
-                                <td>{colaborador.cidade}</td>
-
-                                <td>
-
-                                    <span className="status-badge">
-                                        {colaborador.status}
-                                    </span>
-
-                                </td>
-
-                                <td>
-
-                                    <span
-                                        className={`folga-badge ${folgaHoje ? "hoje" : ""}`}
-                                    >
-                                        {colaborador.dia_folga || "-"}
-                                    </span>
-
-                                </td>
-
-                                <td>
-                                                                        <button
-                                        className="icon-btn"
-                                        onClick={() => {
-                                            setSelected(colaborador);
-                                            setModalOpen(true);
-                                        }}
-                                    >
-                                        <Pencil size={18} />
-                                    </button>
-
-                                    <button
-                                        className="icon-btn delete"
-                                        onClick={async () => {
-
-                                            if (
-                                                window.confirm(
-                                                    `Excluir ${colaborador.nome}?`
-                                                )
-                                            ) {
-
-                                                await remove(colaborador.id);
-
+                                        <button
+                                            className="nome-colaborador"
+                                            onClick={() =>
+                                                navigate(`/colaboradores/${colaborador.id}`)
                                             }
+                                        >
+                                            {colaborador.nome}
+                                        </button>
 
-                                        }}
-                                    >
-                                        <Trash2 size={18} />
-                                    </button>
+                                    </td>
 
-                                </td>
+                                    <td>{colaborador.email}</td>
 
-                            </tr>
+                                    <td>{colaborador.matricula}</td>
 
-                        );
+                                    <td>{colaborador.cargo}</td>
 
-                    })}
+                                    <td>{colaborador.setor}</td>
 
-                </tbody>
+                                    <td>{colaborador.cidade}</td>
 
-            </table>
+                                    <td>
 
+                                        <span className="status-badge">
+                                            {colaborador.status}
+                                        </span>
+
+                                    </td>
+
+                                    <td>
+
+                                        <span
+                                            className={`folga-badge ${folgaHoje ? "hoje" : ""}`}
+                                        >
+                                            {colaborador.dia_folga || "-"}
+                                        </span>
+
+                                    </td>
+
+                                    <td>
+                                                                            <button
+                                            className="icon-btn"
+                                            onClick={() => {
+                                                setSelected(colaborador);
+                                                setModalOpen(true);
+                                            }}
+                                        >
+                                            <Pencil size={18} />
+                                        </button>
+
+                                        <button
+                                            className="icon-btn delete"
+                                            onClick={async () => {
+
+                                                if (
+                                                    window.confirm(
+                                                        `Excluir ${colaborador.nome}?`
+                                                    )
+                                                ) {
+
+                                                    await remove(colaborador.id);
+
+                                                }
+
+                                            }}
+                                        >
+                                            <Trash2 size={18} />
+                                        </button>
+
+                                    </td>
+
+                                </tr>
+
+                            );
+
+                        })}
+
+                    </tbody>
+
+                </table>
+            </div>
+            
             <ColaboradorModal
                 open={modalOpen}
                 colaborador={selected}
