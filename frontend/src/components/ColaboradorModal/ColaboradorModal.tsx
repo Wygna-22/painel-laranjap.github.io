@@ -25,6 +25,7 @@ const initialState: Omit<Colaborador, "id"> = {
     foto_url: "",
     observacoes: "",
     gestor_id: null,
+    gestor_nome: null,
 };
 
 export default function ColaboradorModal({
