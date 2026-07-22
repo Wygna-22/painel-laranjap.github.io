@@ -18,10 +18,22 @@ export default function Colaboradores() {
     } = useColaboradores();
 
     const [pesquisa, setPesquisa] = useState("");
-
     const [modalOpen, setModalOpen] = useState(false);
     const [selected, setSelected] = useState<Colaborador | null>(null);
+
     const navigate = useNavigate();
+
+    const DIAS_SEMANA = [
+        "Domingo",
+        "Segunda",
+        "Terça",
+        "Quarta",
+        "Quinta",
+        "Sexta",
+        "Sábado",
+    ];
+
+    const hoje = DIAS_SEMANA[new Date().getDay()];
 
     const colaboradoresFiltrados = colaboradores.filter((colaborador) =>
         colaborador.nome.toLowerCase().includes(pesquisa.toLowerCase()) ||
@@ -91,6 +103,8 @@ export default function Colaboradores() {
 
                         <th>Status</th>
 
+                        <th>Folga</th>
+
                         <th>Ações</th>
 
                     </tr>
@@ -99,67 +113,96 @@ export default function Colaboradores() {
 
                 <tbody>
 
-                    {colaboradoresFiltrados.map((colaborador) => (
+                    {colaboradoresFiltrados.map((colaborador) => {
 
-                        <tr key={colaborador.id}>
+                        const folgaHoje =
+                            (colaborador.dia_folga ?? "").trim() === hoje;
 
-                            <td>
-                                <button
-                                    className="nome-colaborador"
-                                    onClick={() => navigate(`/colaboradores/${colaborador.id}`)}
-                                >
-                                    {colaborador.nome}
-                                </button>
-                            </td>
+                        return (
 
-                            <td>{colaborador.email}</td>
+                            <tr
+                                key={colaborador.id}
+                                className={folgaHoje ? "linha-folga" : ""}
+                            >
 
-                            <td>{colaborador.matricula}</td>
+                                <td>
 
-                            <td>{colaborador.cargo}</td>
-
-                            <td>{colaborador.setor}</td>
-
-                            <td>{colaborador.cidade}</td>
-
-                            <td>{colaborador.status}</td>
-
-                            <td>
-
-                                <button
-                                    className="icon-btn"
-                                    onClick={() => {
-                                        setSelected(colaborador);
-                                        setModalOpen(true);
-                                    }}
-                                >
-                                    <Pencil size={18} />
-                                </button>
-
-                                <button
-                                    className="icon-btn delete"
-                                    onClick={async () => {
-
-                                        if (
-                                            window.confirm(
-                                                `Excluir ${colaborador.nome}?`
-                                            )
-                                        ) {
-
-                                            await remove(colaborador.id);
-
+                                    <button
+                                        className="nome-colaborador"
+                                        onClick={() =>
+                                            navigate(`/colaboradores/${colaborador.id}`)
                                         }
+                                    >
+                                        {colaborador.nome}
+                                    </button>
 
-                                    }}
-                                >
-                                    <Trash2 size={18} />
-                                </button>
+                                </td>
 
-                            </td>
+                                <td>{colaborador.email}</td>
 
-                        </tr>
+                                <td>{colaborador.matricula}</td>
 
-                    ))}
+                                <td>{colaborador.cargo}</td>
+
+                                <td>{colaborador.setor}</td>
+
+                                <td>{colaborador.cidade}</td>
+
+                                <td>
+
+                                    <span className="status-badge">
+                                        {colaborador.status}
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span
+                                        className={`folga-badge ${folgaHoje ? "hoje" : ""}`}
+                                    >
+                                        {colaborador.dia_folga || "-"}
+                                    </span>
+
+                                </td>
+
+                                <td>
+                                                                        <button
+                                        className="icon-btn"
+                                        onClick={() => {
+                                            setSelected(colaborador);
+                                            setModalOpen(true);
+                                        }}
+                                    >
+                                        <Pencil size={18} />
+                                    </button>
+
+                                    <button
+                                        className="icon-btn delete"
+                                        onClick={async () => {
+
+                                            if (
+                                                window.confirm(
+                                                    `Excluir ${colaborador.nome}?`
+                                                )
+                                            ) {
+
+                                                await remove(colaborador.id);
+
+                                            }
+
+                                        }}
+                                    >
+                                        <Trash2 size={18} />
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+                        );
+
+                    })}
 
                 </tbody>
 
@@ -185,8 +228,8 @@ export default function Colaboradores() {
                     }
 
                 }}
-            />    
-                    
+            />
+
         </div>
 
     );

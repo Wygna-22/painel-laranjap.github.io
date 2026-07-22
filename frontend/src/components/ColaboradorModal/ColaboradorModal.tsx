@@ -17,6 +17,9 @@ const initialState: Omit<Colaborador, "id"> = {
     cargo: "",
     setor: "",
     cidade: "",
+
+    dia_folga: "",
+
     data_admissao: "",
     status: "ativo",
     foto_url: "",
@@ -63,113 +66,170 @@ export default function ColaboradorModal({
 
     return (
         <div className="modal-overlay">
-
-            <div className="modal">
-
-                <h2>
-                    {colaborador ? "Editar Colaborador" : "Novo Colaborador"}
-                </h2>
-
+            <div className="colaborador-modal">
                 <form onSubmit={handleSubmit}>
+                    <div className="colaborador-modal-header">
+                        <div>
+                            <h2>
+                                {colaborador
+                                    ? "Editar Colaborador"
+                                    : "Novo Colaborador"}
+                            </h2>
 
-                    <input
-                        name="nome"
-                        placeholder="Nome"
-                        value={form.nome}
-                        onChange={handleChange}
-                        required
-                    />
+                            <p>
+                                Cadastre ou atualize um colaborador.
+                            </p>
+                        </div>
+                    </div>
 
-                    <input
-                        name="matricula"
-                        placeholder="Matrícula"
-                        value={form.matricula}
-                        onChange={handleChange}
-                        required
-                    />
+                    <div className="colaborador-form-grid">
 
-                    <input
-                        name="email"
-                        placeholder="E-mail"
-                        value={form.email ?? ""}
-                        onChange={handleChange}
-                    />
+                        <div className="colaborador-input-group">
+                            <label>Nome</label>
+                            <input
+                                name="nome"
+                                value={form.nome}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
 
-                    <input
-                        name="telefone"
-                        placeholder="Telefone"
-                        value={form.telefone ?? ""}
-                        onChange={handleChange}
-                    />
+                        <div className="colaborador-input-group">
+                            <label>Matrícula</label>
+                            <input
+                                name="matricula"
+                                value={form.matricula}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
 
-                    <input
-                        name="cargo"
-                        placeholder="Cargo"
-                        value={form.cargo}
-                        onChange={handleChange}
-                        required
-                    />
+                        <div className="colaborador-input-group">
+                            <label>E-mail</label>
+                            <input
+                                name="email"
+                                type="email"
+                                value={form.email ?? ""}
+                                onChange={handleChange}
+                            />
+                        </div>
 
-                    <input
-                        name="setor"
-                        placeholder="Setor"
-                        value={form.setor}
-                        onChange={handleChange}
-                        required
-                    />
+                        <div className="colaborador-input-group">
+                            <label>Telefone</label>
+                            <input
+                                name="telefone"
+                                value={form.telefone ?? ""}
+                                onChange={handleChange}
+                            />
+                        </div>
 
-                    <input
-                        name="cidade"
-                        placeholder="Cidade"
-                        value={form.cidade}
-                        onChange={handleChange}
-                        required
-                    />
+                        <div className="colaborador-input-group">
+                            <label>Cargo</label>
+                            <input
+                                name="cargo"
+                                value={form.cargo}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
 
-                    <input
-                        type="date"
-                        name="data_admissao"
-                        value={form.data_admissao}
-                        onChange={handleChange}
-                        required
-                    />
+                        <div className="colaborador-input-group">
+                            <label>Setor</label>
+                            <input
+                                name="setor"
+                                value={form.setor}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
 
-                    <select
-                        name="status"
-                        value={form.status}
-                        onChange={handleChange}
-                    >
-                        <option value="ativo">Ativo</option>
-                        <option value="afastado">Afastado</option>
-                        <option value="desligado">Desligado</option>
-                    </select>
+                        <div className="colaborador-input-group">
+                            <label>Cidade</label>
+                            <input
+                                name="cidade"
+                                value={form.cidade}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
 
-                    <textarea
-                        name="observacoes"
-                        placeholder="Observações"
-                        value={form.observacoes ?? ""}
-                        onChange={handleChange}
-                    />
+                        <div className="colaborador-input-group">
+                            <label>Data de Admissão</label>
+                            <input
+                                type="date"
+                                name="data_admissao"
+                                value={form.data_admissao}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
 
-                    <div className="modal-buttons">
+                        <div className="colaborador-input-group">
+                            <label>Status</label>
+
+                            <select
+                                name="status"
+                                value={form.status}
+                                onChange={handleChange}
+                            >
+                                <option value="ativo">Ativo</option>
+                                <option value="afastado">Afastado</option>
+                                <option value="desligado">Desligado</option>
+                            </select>
+                        </div>
+
+                        <div className="colaborador-input-group">
+                            <label>Dia da Folga</label>
+
+                            <select
+                                name="dia_folga"
+                                value={form.dia_folga ?? ""}
+                                onChange={handleChange}
+                            >
+                                <option value="">Selecione</option>
+                                <option value="Segunda">Segunda-feira</option>
+                                <option value="Terça">Terça-feira</option>
+                                <option value="Quarta">Quarta-feira</option>
+                                <option value="Quinta">Quinta-feira</option>
+                                <option value="Sexta">Sexta-feira</option>
+                                <option value="Sábado">Sábado</option>
+                                <option value="Domingo">Domingo</option>
+                            </select>
+                        </div>
+
+                        <div className="colaborador-input-group full-width">
+
+                            <label>Observações</label>
+
+                            <textarea
+                                name="observacoes"
+                                value={form.observacoes ?? ""}
+                                onChange={handleChange}
+                            />
+
+                        </div>
+
+                    </div>
+
+                    <div className="colaborador-modal-footer">
 
                         <button
                             type="button"
+                            className="cancelar"
                             onClick={onClose}
                         >
                             Cancelar
                         </button>
 
-                        <button type="submit">
+                        <button
+                            type="submit"
+                            className="salvar"
+                        >
                             Salvar
                         </button>
-
                     </div>
-
                 </form>
-
             </div>
-
         </div>
     );
 }

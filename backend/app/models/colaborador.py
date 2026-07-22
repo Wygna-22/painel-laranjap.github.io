@@ -87,4 +87,9 @@ class Colaborador(TimestampMixin, Base):
         nullable=True,
     )
 
+    dia_folga: Mapped[str | None] = mapped_column(
+        String(20),
+        nullable=True,
+    )
+
     gestor: Mapped[User | None] = relationship()

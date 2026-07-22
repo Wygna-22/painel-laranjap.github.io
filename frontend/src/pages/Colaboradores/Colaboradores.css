@@ -112,6 +112,64 @@
     font-weight:600;
 }
 
-body{
-    background:red !important;
+.folga-hoje{
+    background:#F97316;
+    color:#fff;
+    padding:6px 12px;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:700;
+    animation:blinkFolga 1.2s infinite;
+}
+
+/* ===========================
+   Folga Hoje
+=========================== */
+@keyframes blinkFolga {
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.06);
+        opacity: .65;
+    }
+}
+
+.folga-badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:95px;
+    height:34px;
+    padding:0 14px;
+    border-radius:999px;
+    background:#E2E8F0;
+    color:#475569;
+    font-size:12px;
+    font-weight:700;
+    transition:.25s;
+}
+
+.folga-badge.hoje{
+    color:#fff;
+    background:linear-gradient(
+        135deg,
+        #FB923C,
+        #F97316
+    );
+    animation:blinkFolga 1.2s infinite;
+    box-shadow:
+        0 0 0 4px rgba(249,115,22,.15),
+        0 8px 18px rgba(249,115,22,.25);
+}
+
+.linha-folga {
+    background: #FFF7ED;
+}
+
+.linha-folga:hover td{
+    background:#FFE7CF;
 }

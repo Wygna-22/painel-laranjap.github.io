@@ -10,6 +10,7 @@ export interface Colaborador {
     cargo: string;
     setor: string;
     cidade: string;
+    dia_folga: string | null;
 
     data_admissao: string;
 

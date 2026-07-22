@@ -1,0 +1,136 @@
+.filter-bar {
+    background: #ffffff;
+    border: 1px solid #ececec;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-shadow: 0 8px 24px rgba(0,0,0,.04);
+}
+
+/* ========================= */
+/* BUSCA */
+/* ========================= */
+.search-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    height: 52px;
+    padding: 0 16px;
+    border: 1px solid #e8e8e8;
+    border-radius: 12px;
+    transition: .2s;
+}
+
+.search-box:hover {
+    border-color: #d6d6d6;
+}
+
+.search-box:focus-within {
+    border-color: #F97316;
+    box-shadow: 0 0 0 4px rgba(249,115,22,.12);
+}
+
+.search-box svg {
+    color: #9ca3af;
+    flex-shrink: 0;
+}
+
+.search-box input {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: .95rem;
+    font-family: inherit;
+    background: transparent;
+}
+
+/* ========================= */
+/* FILTROS */
+/* ========================= */
+.filters {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.filter-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 220px;
+    height: 48px;
+    padding: 0 14px;
+    border: 1px solid #e8e8e8;
+    border-radius: 12px;
+    transition: .2s;
+}
+
+.filter-item:hover {
+    border-color: #d6d6d6;
+}
+
+.filter-item:focus-within {
+    border-color: #F97316;
+    box-shadow: 0 0 0 4px rgba(249,115,22,.12);
+}
+
+.filter-item svg {
+    color: #9ca3af;
+}
+
+.filter-item select {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: .94rem;
+    cursor: pointer;
+    appearance: none;
+}
+
+/* ========================= */
+/* BOTÃO */
+/* ========================= */
+.clear-btn {
+    margin-left: auto;
+    height: 48px;
+    padding: 0 18px;
+    border: none;
+    border-radius: 12px;
+    background: #fff7ed;
+    color: #ea580c;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: .2s;
+}
+
+.clear-btn:hover {
+    background: #fed7aa;
+}
+
+/* ========================= */
+/* RESPONSIVO */
+/* ========================= */
+@media (max-width: 900px){
+    .filters{
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-item{
+        width:100%;
+    }
+
+    .clear-btn{
+        width:100%;
+        justify-content:center;
+        margin-left:0;
+    }
+}

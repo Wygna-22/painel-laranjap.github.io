@@ -1,78 +1,198 @@
 .modal-overlay{
     position:fixed;
     inset:0;
-
-    background:rgba(0,0,0,.4);
-
+    background:rgba(15,23,42,.45);
     display:flex;
     justify-content:center;
     align-items:center;
-
     z-index:999;
+    animation:fade .25s ease;
 }
 
-.modal{
+@keyframes fade{
+    from{
+        opacity:0;
+    }
 
-    width:600px;
-    max-width:95%;
+    to{
+        opacity:1;
+    }
+}
 
-    background:white;
+.colaborador-modal{
+    width:min(900px,92vw);
+    max-height:90vh;
+    overflow-y:auto;
+    background: #F8FAFC;
+    border-radius:20px;
+    box-shadow:
+        0 18px 60px rgba(15,23,42,.18);
+    animation:modalOpen .25s ease;
+}
 
+@keyframes modalOpen{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.colaborador-modal form{
+    padding:32px;
+}
+
+.colaborador-modal-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-bottom:28px;
+    padding-bottom:18px;
+    border-bottom:1px solid #E2E8F0;
+}
+
+.colaborador-modal-header h2{
+    margin:0;
+    font-size:26px;
+    font-weight:700;
+    color:#0F172A;
+}
+
+.colaborador-modal-header p{
+    margin-top:6px;
+    color:#64748B;
+    font-size:13px;
+}
+
+.fechar{
+    width:42px;
+    height:42px;
+    border:none;
     border-radius:12px;
+    background:#F8FAFC;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:.2s;
+    font-size:18px;
+}
 
-    padding:24px;
+.fechar:hover{
+    background:#FFF3EB;
+    color:#F97316;
+}
 
+.colaborador-form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:20px;
+}
+
+.full-width{
+    grid-column:1/-1;
+}
+
+.colaborador-input-group{
     display:flex;
     flex-direction:column;
-
-    gap:16px;
 }
 
-.modal form{
-
-    display:grid;
-
-    grid-template-columns:1fr 1fr;
-
-    gap:12px;
-}
-
-.modal input,
-.modal select,
-.modal textarea{
-
-    padding:10px;
-
-    border:1px solid #ddd;
-
-    border-radius:8px;
-}
-
-.modal textarea{
-
-    grid-column:1/3;
-
-    min-height:100px;
-}
-
-.modal-buttons{
-
-    grid-column:1/3;
-
+.colaborador-input-group label{
     display:flex;
-
-    justify-content:flex-end;
-
-    gap:12px;
+    align-items:center;
+    gap:8px;
+    margin-bottom:8px;
+    font-size:14px;
+    font-weight:700;
+    color:#1E293B;
 }
 
-.modal-buttons button{
+.colaborador-input-group input,
+.colaborador-input-group select,
+.colaborador-input-group textarea{
+    width:100%;
+    min-height:42px;
+    padding:10px 16px;
+    border: 1.5px solid #CBD5E1;
+    border-radius:12px;
+    outline:none;
+    font-size:14px;
+    transition:.2s;
+    box-sizing:border-box;
+}
 
-    padding:10px 20px;
+.colaborador-input-group textarea{
+    min-height:120px;
+    resize:vertical;
+}
 
+.colaborador-input-group input:focus,
+.colaborador-input-group select:focus,
+.colaborador-input-group textarea:focus{
+    background:#FFFFFF;
+    border-color:#F97316;
+    box-shadow:0 0 0 4px rgba(249,115,22,.12);
+
+}
+
+.colaborador-modal-footer{
+    margin-top:32px;
+    display:flex;
+    justify-content:flex-end;
+    gap:14px;
+}
+
+.cancelar{
+    height:46px;
+    padding:0 24px;
     border:none;
-
-    border-radius:8px;
-
+    border-radius:12px;
+    background:#E2E8F0;
+    font-weight:600;
     cursor:pointer;
+    transition:.2s;
+}
+
+.cancelar:hover{
+    background:#CBD5E1;
+    transform:translateY(-2px);
+}
+
+.salvar{
+    height:46px;
+    padding:0 24px;
+    border:none;
+    border-radius:12px;
+    background:#F97316;
+    color:#FFF;
+    font-weight:600;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.salvar:hover{
+    background:#EA580C;
+    transform:translateY(-2px);
+    box-shadow:
+        0 10px 18px rgba(249,115,22,.25);
+}
+
+@media(max-width:800px){
+    .colaborador-form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .colaborador-modal-footer{
+        flex-direction:column-reverse;
+    }
+
+    .cancelar,
+    .salvar{
+        width:100%;
+    }
 }

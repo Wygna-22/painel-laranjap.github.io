@@ -11,20 +11,14 @@
     z-index:999;
 }
 
-.modal{
-
+.ferias-modal{
     width:600px;
     max-width:95%;
-
     background:white;
-
     border-radius:12px;
-
     padding:24px;
-
     display:flex;
     flex-direction:column;
-
     gap:16px;
 }
 
