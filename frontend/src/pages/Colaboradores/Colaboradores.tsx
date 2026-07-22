@@ -18,6 +18,8 @@ export default function Colaboradores() {
     } = useColaboradores();
 
     const [pesquisa, setPesquisa] = useState("");
+    const [gestorFiltro, setGestorFiltro] = useState("todos");
+    const [statusFiltro, setStatusFiltro] = useState("todos");
     const [modalOpen, setModalOpen] = useState(false);
     const [selected, setSelected] = useState<Colaborador | null>(null);
 
@@ -35,12 +37,33 @@ export default function Colaboradores() {
 
     const hoje = DIAS_SEMANA[new Date().getDay()];
 
-    const colaboradoresFiltrados = colaboradores.filter((colaborador) =>
-        colaborador.nome.toLowerCase().includes(pesquisa.toLowerCase()) ||
-        (colaborador.email ?? "").toLowerCase().includes(pesquisa.toLowerCase()) ||
-        colaborador.setor.toLowerCase().includes(pesquisa.toLowerCase()) ||
-        colaborador.cidade.toLowerCase().includes(pesquisa.toLowerCase())
-    );
+    const colaboradoresFiltrados = colaboradores.filter((colaborador) => {
+        const busca =
+            colaborador.nome.toLowerCase().includes(pesquisa.toLowerCase()) ||
+            (colaborador.email ?? "").toLowerCase().includes(pesquisa.toLowerCase()) ||
+            colaborador.setor.toLowerCase().includes(pesquisa.toLowerCase()) ||
+            colaborador.cidade.toLowerCase().includes(pesquisa.toLowerCase());
+
+        const gestor =
+            gestorFiltro === "todos" ||
+            colaborador.gestor_nome === gestorFiltro;
+
+        const status =
+            statusFiltro === "todos" ||
+            colaborador.status.toLowerCase() === statusFiltro;
+
+        return busca && gestor && status;
+
+    });
+
+    const gestores = [
+        "todos",
+        ...new Set(
+            colaboradores
+                .map(c => c.gestor_nome)
+                .filter((g): g is string => g !== null)
+        )
+    ];
 
     if (loading) {
         return <h2>Carregando colaboradores...</h2>;
@@ -80,6 +103,54 @@ export default function Colaboradores() {
                     value={pesquisa}
                     onChange={(e) => setPesquisa(e.target.value)}
                 />
+
+            </div>
+
+            <div className="filters">
+                <select
+                    className="filter-select"
+                    value={gestorFiltro}
+                    onChange={(e) => setGestorFiltro(e.target.value)}
+                >
+                    <option value="todos">
+                        Todos os gestores
+                    </option>
+
+                    {gestores.map((gestor) => (
+
+                        gestor !== "todos" && (
+
+                            <option
+                                key={gestor}
+                                value={gestor}
+                            >
+                                {gestor}
+                            </option>
+
+                        )
+
+                    ))}
+
+                </select>
+
+                <select
+                    className="filter-select"
+                    value={statusFiltro}
+                    onChange={(e) => setStatusFiltro(e.target.value)}
+                >
+                    <option value="todos">
+                        Todos os status
+                    </option>
+
+                    <option value="ativo">
+                        Ativo
+                    </option>
+
+                    <option value="inativo">
+                        Inativo
+                    </option>
+
+                </select>
 
             </div>
             
@@ -228,9 +299,6 @@ export default function Colaboradores() {
 
                 }}
             />
-
         </div>
-
     );
-
 }

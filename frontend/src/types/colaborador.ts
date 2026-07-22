@@ -20,4 +20,5 @@ export interface Colaborador {
     observacoes: string | null;
 
     gestor_id: string | null;
+    gestor_nome: string | null;
 }

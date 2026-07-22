@@ -208,3 +208,57 @@
 .tabela-container::-webkit-scrollbar-thumb:hover{
     background:#EA580C;
 }
+
+/* ===========================
+   FILTROS
+=========================== */
+.filters{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin:18px 0 22px;
+}
+
+.filter-select{
+    min-width:200px;
+    height:42px;
+
+    padding:0 16px;
+
+    border:1px solid #e5e7eb;
+    border-radius:12px;
+
+    background:#fff;
+
+    color:#374151;
+    font-size:14px;
+    font-weight:500;
+
+    cursor:pointer;
+
+    transition:all .2s ease;
+}
+
+.filter-select:hover{
+    border-color:#ff7a00;
+}
+
+.filter-select:focus{
+    outline:none;
+    border-color:#ff7a00;
+    box-shadow:0 0 0 3px rgba(255,122,0,.15);
+}
+
+.toolbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+
+    margin-bottom:24px;
+}
+
+.filters{
+    display:flex;
+    gap:12px;
+}

@@ -5,6 +5,15 @@ import { api } from "../../services/api";
 import type { Colaborador } from "../../types/colaborador";
 import { useNavigate } from "react-router-dom";
 
+import {
+    Mail,
+    Phone,
+    MapPin,
+    Briefcase,
+    Building2,
+    UserRound,
+} from "lucide-react";
+
 export default function Colaborador() {
     const { id } = useParams();
     const [colaborador, setColaborador] = useState<Colaborador | null>(null);
@@ -61,6 +70,87 @@ export default function Colaborador() {
                     </button>
                 </div>
             </section>
+
+            <div className="info-grid">
+                <div className="info-card">
+                    <div className="icon-box">
+                        <Mail size={18} />
+                    </div>
+                    <div>
+                        <small>E-mail</small>
+                        <strong>{colaborador.email}</strong>
+                    </div>
+                </div>
+
+                <div className="info-card">
+                    <div className="icon-box">
+                        <Phone size={18} />
+                    </div>
+                    <div>
+                        <small>Telefone</small>
+                        <strong>{colaborador.telefone || "-"}</strong>
+                    </div>
+                </div>
+
+                <div className="info-card">
+                    <div className="icon-box">
+                        <MapPin size={18} />
+                    </div>
+                    <div>
+                        <small>Cidade</small>
+                        <strong>{colaborador.cidade}</strong>
+                    </div>
+                </div>
+
+                <div className="info-card">
+                    <div className="icon-box">
+                        <Briefcase size={18} />
+                    </div>
+                    <div>
+                        <small>Cargo</small>
+                        <strong>{colaborador.cargo}</strong>
+                    </div>
+                </div>
+
+                <div className="info-card">
+                    <div className="icon-box">
+                        <Building2 size={18} />
+                    </div>
+                    <div>
+                        <small>Setor</small>
+                        <strong>{colaborador.setor}</strong>
+                    </div>
+                </div>
+
+                <div className="info-card">
+                    <div className="icon-box">
+                        <UserRound size={18} />
+                    </div>
+                    <div>
+                        <small>Gestor</small>
+                        <strong>{colaborador.gestor_nome ?? "-"}</strong>
+                    </div>
+                </div>
+            </div>
+
+            <section className="observacoes">
+                <h3>Observações</h3>
+
+                <p>
+                    <strong>Folga:</strong> {colaborador.dia_folga || "-"} |
+                    <strong> Mora:</strong> {colaborador.cidade} |
+                    <strong> Observações:</strong> {colaborador.observacoes || "Nenhuma"}
+                </p>
+            </section>
+
+            <section className="timeline">
+                <h3>Linha do Tempo</h3>
+
+                <div className="sem-eventos">
+                    Nenhum evento registrado
+                </div>
+            </section>
+
         </div>
     );
 }

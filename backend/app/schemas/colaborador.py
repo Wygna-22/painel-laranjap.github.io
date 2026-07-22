@@ -16,6 +16,7 @@ class ColaboradorBase(BaseModel):
     foto_url: str | None = None
     observacoes: str | None = None
     gestor_id: UUID | None = None
+    gestor_nome: str | None = None
     dia_folga: str | None = None
 
 class ColaboradorCreate(ColaboradorBase):
@@ -34,6 +35,7 @@ class ColaboradorUpdate(BaseModel):
     foto_url: str | None = None
     observacoes: str | None = None
     gestor_id: UUID | None = None
+    gestor_nome: str | None = None
     dia_folga: str | None = None
 
 class ColaboradorResponse(ColaboradorBase):

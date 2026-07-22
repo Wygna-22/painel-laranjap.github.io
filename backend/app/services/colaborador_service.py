@@ -9,7 +9,6 @@ from app.schemas.colaborador import (
 )
 
 class ColaboradorService:
-
     def create(
         self,
         db: Session,
@@ -52,7 +51,7 @@ class ColaboradorService:
         colaborador_id: UUID,
     ) -> Colaborador:
 
-        colaborador = colaborador_repository.get(
+        colaborador = colaborador_repository.get_with_gestor(
             db,
             colaborador_id,
         )
@@ -68,8 +67,8 @@ class ColaboradorService:
     def list_all(
         self,
         db: Session,
-    ) -> list[Colaborador]:
-        return colaborador_repository.get_all(db)
+    ):
+        return colaborador_repository.get_all_with_gestor(db)
     
     def list_by_gestor(
         self,
