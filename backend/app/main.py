@@ -16,6 +16,11 @@ from app.models.user import User
 from app.dependencies.auth import require_role
 from app.models.enums import UserRole
 
+origins = [
+    "http://localhost:5173",
+    "https://painel-laranja-github-io.vercel.app",
+]
+
 app = FastAPI(
     title="Painel Laranja API",
     version="1.0.0",
@@ -23,9 +28,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-    ],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
