@@ -18,7 +18,11 @@ export interface Indicador {
     falta_meta_mes: number;
 }
 
-export type IndicadorCreate = Omit<Indicador, "id">;
+export type IndicadorCreate = Omit<
+    Indicador,
+    "id" | "gestor"
+>;
+
 export async function getIndicadores() {
     const response = await api.get<Indicador[]>(
         "/indicadores/"
