@@ -1,110 +1,109 @@
+/* ===========================
+   DASHBOARD
+=========================== */
 .dashboard{
-    padding:30px;
     display:flex;
     flex-direction:column;
-    gap:24px;
+    gap:28px;
+    padding:36px;
+    background:#F8FAFC;
+    min-height:100%;
 }
 
-.cards{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-    gap:20px;
+/* ===========================
+   TÍTULO
+=========================== */
+.dashboard h1{
+    margin:0;
+    font-size:44px;
+    font-weight:700;
+    letter-spacing:-1px;
+    color:#0F172A;
 }
 
-.dashboard-layout{
-    gap:24px;
+.dashboard p{
+    color:#64748B;
+    font-size:15px;
+    margin-top:8px;
+    margin-bottom:0;
 }
 
+/* ===========================
+   KPI
+=========================== */
+.dashboard-grid{
+    margin-top:8px;
+}
+
+/* ===========================
+   LINHA DOS GRÁFICOS
+=========================== */
+.charts-grid{
+    margin-top:6px;
+}
+
+/* ===========================
+   CARDS
+=========================== */
+.chart-card{
+    background:#FFFFFF;
+    border-radius:20px;
+    border:1px solid #E8EDF5;
+    box-shadow:
+        0 8px 30px rgba(15,23,42,.04);
+    transition:.25s;
+}
+
+.chart-card:hover{
+    transform:translateY(-4px);
+    box-shadow:
+        0 16px 40px rgba(15,23,42,.08);
+}
+
+/* ===========================
+   TÍTULO DOS CARDS
+=========================== */
+.chart-card h3{
+    font-size:19px;
+    font-weight:600;
+    color:#0F172A;
+    margin-bottom:22px;
+}
+
+/* ===========================
+   ÁREA INFERIOR
+=========================== */
 .dashboard-bottom{
-    grid-template-columns:1.8fr 1.2fr;
-    height: 320px;
-    display:flex;
-    gap:24px;
-    align-items:flex-start;
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:22px;
 }
 
-.dashboard-bottom > :first-child{
-    flex:2;
+/* ===========================
+   EVENTOS
+=========================== */
+.event-item{
+    padding:16px 0;
+    border-bottom:1px solid #F1F5F9;
 }
 
-.dashboard-bottom > :last-child{
-    flex:1;
+.event-item:last-child{
+    border:none;
 }
 
-.event-content{
-    max-height:280px;
-    overflow-y:auto;
+.event-title{
+    margin:0;
+    font-size:15px;
+    color:#0F172A;
+    font-weight:600;
 }
 
-@keyframes fadeUp{
-    from{
-        opacity:0;
-        transform:translateY(20px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
+.event-user{
+    margin:6px 0;
+    color:#64748B;
+    font-size:14px;
 }
 
-.dashboard-card{
-    animation:fadeUp .6s ease forwards;
-}
-
-.dashboard-card:nth-child(1){
-    animation-delay:.1s;
-}
-
-.dashboard-card:nth-child(2){
-    animation-delay:.2s;
-}
-
-.dashboard-card:nth-child(3){
-    animation-delay:.3s;
-}
-
-.dashboard-card:nth-child(4){
-    animation-delay:.4s;
-}
-
-.dashboard-card{
-    transition:.25s;
-}
-
-.dashboard-card:hover{
-    transform:translateY(-6px);
-    box-shadow:0 16px 35px rgba(0,0,0,.08);
-}
-
-.sidebar-item{
-    transition:.25s;
-}
-
-.sidebar-item:hover{
-    transform:translateX(6px);
-}
-
-.sidebar-logo div{
-    transition:.3s;
-}
-
-.sidebar-logo div:hover{
-    transform:rotate(-8deg) scale(1.08);
-}
-
-.dashboard{
-    animation:dashboardAppear .7s ease;
-}
-
-@keyframes dashboardAppear{
-    from{
-        opacity:0;
-        transform:translateY(25px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
+.event-date{
+    color:#94A3B8;
 }

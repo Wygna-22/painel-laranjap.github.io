@@ -7,14 +7,19 @@ import {
     UserCog,
     Activity,
     LogOut,
+    PanelLeftClose,
+    PanelLeftOpen,
 } from "lucide-react";
+
+import { useState } from "react";
 
 import { NavLink } from "react-router-dom";
 import "./Sidebar.css";
 
 export default function Sidebar() {
+    const [collapsed, setCollapsed] = useState(false);
     return (
-        <aside className="sidebar">
+        <aside className={`sidebar ${collapsed ? "collapsed" : ""}`}>
 
             <div className="sidebar-header">
 
@@ -42,9 +47,7 @@ export default function Sidebar() {
                         <h2>Painel Laranja</h2>
                         <span>Gestão Corporativa</span>
                     </div>
-
                 </div>
-
             </div>
 
             <nav className="sidebar-nav">
@@ -119,6 +122,19 @@ export default function Sidebar() {
                     <span>Relatórios</span>
                 </NavLink>
             </nav>
+
+            <button
+                className="sidebar-toggle"
+                onClick={() => setCollapsed(!collapsed)}
+            >
+                {collapsed ? (
+                    <PanelLeftOpen size={20} />
+                ) : (
+                    <PanelLeftClose size={20} />
+                )}
+
+                {!collapsed && <span>Recolher menu</span>}
+            </button>
 
             <div className="sidebar-footer">
 

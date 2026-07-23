@@ -1,95 +1,203 @@
+/* ===========================
+   HEADER
+=========================== */
+
 .header{
-    height:70px;
-    background:white;
+    height:78px;
     display:flex;
-    justify-content:space-between;
     align-items:center;
+    justify-content:space-between;
     padding:0 30px;
-    box-shadow:0 2px 8px rgba(0,0,0,.05);
+    background:#FFFFFF;
+    border-bottom:1px solid #EEF2F7;
+    box-shadow:
+        0 4px 20px rgba(15,23,42,.04);
+    position:sticky;
+    top:0;
+    z-index:100;
 }
+
+.header h2{
+    margin:0;
+
+    font-size:34px;
+
+    font-weight:700;
+
+    color:#0F172A;
+
+    letter-spacing:-1px;
+}
+
+/* ===========================
+   DIREITA
+=========================== */
 
 .header-right{
+
     display:flex;
     align-items:center;
-    gap:20px;
+
+    gap:14px;
 }
 
+/* ===========================
+   PESQUISA
+=========================== */
+
 .search{
-    width:300px;
+
+    width:320px;
     height:46px;
+
     display:flex;
     align-items:center;
+
     gap:12px;
+
     padding:0 16px;
+
     background:#F8FAFC;
+
     border:1px solid #E2E8F0;
+
     border-radius:14px;
+
     transition:.25s;
 }
 
 .search:focus-within{
+
     border-color:#FF7A00;
-    box-shadow:0 0 0 4px rgba(255,122,0,.10);
+
+    background:white;
+
+    box-shadow:
+        0 0 0 4px rgba(255,122,0,.08);
+}
+
+.search svg{
+
+    color:#94A3B8;
+
+    flex-shrink:0;
 }
 
 .search input{
+
     flex:1;
+
     border:none;
+
     outline:none;
+
     background:transparent;
+
+    color:#0F172A;
+
     font-size:14px;
-    color:#334155;
 }
 
-.icon{
-    cursor:pointer;
-    color:#555;
+.search input::placeholder{
+
+    color:#94A3B8;
 }
 
-.header h2{
-    font-size:28px;
-    font-weight:700;
-}
-
-.header-actions{
-    display:flex;
-    align-items:center;
-    gap:14px;
-}
+/* ===========================
+   BOTÕES
+=========================== */
 
 .header-icon{
-    width:42px;
-    height:42px;
+
+    width:44px;
+    height:44px;
+
     border:none;
-    background:white;
-    border-radius:12px;
+
+    background:transparent;
+
+    border-radius:14px;
+
     display:flex;
     align-items:center;
     justify-content:center;
-    cursor:pointer;
+
     color:#64748B;
+
+    cursor:pointer;
+
     transition:.25s;
 }
 
 .header-icon:hover{
+
     background:#FFF7ED;
+
     color:#FF7A00;
+
+    transform:translateY(-2px);
 }
 
+.header-icon svg{
+
+    transition:.25s;
+}
+
+/* ===========================
+   AVATAR
+=========================== */
+
 .header-avatar{
-    width:44px;
-    height:44px;
+
+    width:46px;
+    height:46px;
+
+    border:none;
+
+    background:#FFF7ED;
+
+    border:1px solid #FED7AA;
+
     border-radius:50%;
-    border:1px solid #E2E8F0;
-    background:#FFF;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     cursor:pointer;
-    color:#475569;
+
+    color:#FF7A00;
+
     transition:.25s;
 }
 
 .header-avatar:hover{
-    border-color:#FF7A00;
+
+    transform:scale(1.05);
+
+    box-shadow:
+        0 10px 20px rgba(255,122,0,.15);
+}
+
+/* ===========================
+   RESPONSIVO
+=========================== */
+
+@media (max-width:900px){
+
+    .header{
+
+        padding:0 18px;
+    }
+
+    .header h2{
+
+        font-size:26px;
+    }
+
+    .search{
+
+        width:220px;
+    }
+
 }
